@@ -1,0 +1,8 @@
+include: package:lints/recommended.yaml
+
+linter:
+  rules:
+    - sort_pub_dependencies
+
+formatter:
+  page_width: 120
