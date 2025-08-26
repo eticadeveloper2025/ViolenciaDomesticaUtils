@@ -8,3 +8,5 @@ String apiSecretToken = dotenv.env['API_SECRET_TOKEN'] ?? '';
 EnderecoMapBox? currentLocation;
 
 Map<String, String> requestHeaders = {'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'};
+// ... outras constantes existentes
+const String urlWhatsAppAPI = 'https://campviolencia.onrender.com';

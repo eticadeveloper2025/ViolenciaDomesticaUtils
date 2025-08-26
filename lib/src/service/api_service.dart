@@ -42,7 +42,7 @@ class ApiService {
     print("MESAGGEEEEEEEE => $mensagem");
     try {
       var response = await http.post(
-        Uri.parse('https://believable-fascination-production.up.railway.app/api/Message/send_message'),
+        Uri.parse('https://campviolencia.onrender.com/api/Message/send_message'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'Number': numeroDestinatario, 'Message': mensagem}),
       );
