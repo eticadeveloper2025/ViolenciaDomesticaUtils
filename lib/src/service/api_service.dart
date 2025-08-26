@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:violencia_domestica_utils/src/model/endereco_map_box_model.dart';
 import 'package:violencia_domestica_utils/src/util/constants.dart';
@@ -28,11 +29,26 @@ class ApiService {
         'numero': numeroDestinatario,
         'mensagem': mensagem,
       }, headers: requestHeaders);
-      
+
       if (resultado.statusCode != 200 && resultado.statusCode != 502) {
         throw json.decode(resultado.body)['error'] ?? json.decode(resultado.body)['Message'];
       }
     } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> enviarMensagemWhatsApp(String numeroDestinatario, String mensagem) async {
+    print("MESAGGEEEEEEEE => $mensagem");
+    try {
+      var response = await http.post(
+        Uri.parse('https://campviolencia.onrender.com/api/Message/send_message'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'Number': numeroDestinatario, 'Message': mensagem}),
+      );
+      print("STATUS: ${response.statusCode}");
+    } catch (e) {
+      print("DEU ALGUM ERRO");
       rethrow;
     }
   }

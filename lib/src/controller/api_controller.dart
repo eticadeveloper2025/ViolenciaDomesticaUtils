@@ -42,4 +42,16 @@ class APIController extends GetxController {
       rethrow;
     }
   }
+
+  Future<void> enviarMensagemWhatsApp(String numeroDestinatario, String conteudo) async {
+    try {
+      await NetworkInfo.checkConnection(
+        onConnected: () async {
+          await apiService.enviarMensagemWhatsApp('55$numeroDestinatario', conteudo);
+        },
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
